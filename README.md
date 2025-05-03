@@ -23,63 +23,54 @@ The dataset contains **transactional data** where each row represents a shopping
 
 ### 📄 Format:
 - Each row is a list of items in a single transaction.
-- Stored in a CSV file and loaded using Python's built-in `csv.reader()` to accommodate variable-length rows (ragged arrays).
+- Stored in a CSV file and loaded using Python's built-in csv.reader() to accommodate variable-length rows (ragged arrays).
+  
+### ✅ Key Characteristics:
+- No fixed number of columns (unlike structured tabular data).
+- Suitable for one-hot encoding using TransactionEncoder for association rule mining.
 
-### 🔍 Example:
-```python
-['milk', 'bread', 'butter']
-['eggs', 'milk']
-['bread', 'butter', 'jam']
-✅ Key Characteristics:
-No fixed number of columns (unlike structured tabular data).
+---
 
-Suitable for one-hot encoding using TransactionEncoder for association rule mining.
+### 🧰 Libraries and Tools Used
+- `pandas` – Data manipulation  
+- `numpy` – Array handling  
+- `seaborn`, `matplotlib` – Data visualization  
+- `csv` – Reading raw transaction lists  
+- `mlxtend` – Apriori algorithm and rule generation
 
-🧰 Libraries and Tools Used
-pandas – Data manipulation
+---
 
-numpy – Array handling
+### ⚙️ Methodology
 
-seaborn, matplotlib – Data visualization
+**Data Loading**  
+Transaction data is read using `csv.reader` and stored in a list format for flexible processing.
 
-csv – Reading raw transaction lists
+**Preprocessing**  
+The raw transaction list is transformed into a one-hot encoded matrix using `TransactionEncoder`, which allows us to apply algorithms that require binary input.
 
-mlxtend – Apriori algorithm and rule generation
-
-⚙️ Methodology
-Data Loading
-Transaction data is read using csv.reader and stored in a list format for flexible processing.
-
-Preprocessing
-The raw transaction list is transformed into a one-hot encoded matrix using TransactionEncoder, which allows us to apply algorithms that require binary input.
-
-Frequent Itemset Generation
+**Frequent Itemset Generation**  
 The Apriori algorithm is applied to discover itemsets that appear together with a minimum support threshold.
 
-Association Rule Mining
+**Association Rule Mining**  
 Generated frequent itemsets are converted into rules using metrics like:
+- **Support**
+- **Confidence**
+- **Lift**
 
-Support
-
-Confidence
-
-Lift
-
-Visualization
+**Visualization**  
 High-confidence and high-lift rules are visualized using bar plots and heatmaps to interpret item associations effectively.
 
-📈 Results & Insights
-Extracted strong association rules (e.g., {milk} → {bread}) with high support and lift values.
+---
 
-Identified frequent itemsets that can guide product bundling and promotional campaigns.
+### 📈 Results & Insights
+- Extracted strong association rules (e.g., `{milk} → {bread}`) with high support and lift values.
+- Identified frequent itemsets that can guide product bundling and promotional campaigns.
+- Visualizations highlight top rules and item combinations that frequently occur together.
 
-Visualizations highlight top rules and item combinations that frequently occur together.
+---
 
-💡 Use Cases
-Retail recommendations: Suggest related items at checkout or on product pages.
-
-Promotional planning: Create offers based on frequently bought-together items.
-
-Store layout optimization: Place frequently associated items near each other.
-
-Inventory forecasting: Predict demand for product combinations.
+### 💡 Use Cases
+- **Retail recommendations**: Suggest related items at checkout or on product pages.
+- **Promotional planning**: Create offers based on frequently bought-together items.
+- **Store layout optimization**: Place frequently associated items near each other.
+- **Inventory forecasting**: Predict demand for product combinations.
